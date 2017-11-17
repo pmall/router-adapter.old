@@ -1,28 +1,28 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 class RouteCollection
 {
     /**
      * The router adapter.
      *
-     * @var \Ellipse\Router\Adapter\RouterAdapterInterface
+     * @var \Ellipse\Router\RouterAdapterInterface
      */
     private $adapter;
 
     /**
      * The definition.
      *
-     * @var \Ellipse\Router\Adapter\DefinitionInterface
+     * @var \Ellipse\Router\DefinitionInterface
      */
     private $definition;
 
     /**
      * Sert up a route collection with the given router adapter and definition.
      *
-     * @param \Ellipse\Router\Adapter\RouterAdapterInterface  $adapter
-     * @param \Ellipse\Router\Adapter\DefinitionInterface     $definition
+     * @param \Ellipse\Router\RouterAdapterInterface    $adapter
+     * @param \Ellipse\Router\DefinitionInterface       $definition
      */
     public function __construct(RouterAdapterInterface $adapter, DefinitionInterface $definition)
     {
@@ -35,7 +35,7 @@ class RouteCollection
      * dispatcher factory.
      *
      * @param callable $dispatcher
-     * @return \Ellipse\Router\Adapter\RouterAdapterInterface
+     * @return \Ellipse\Router\RouterAdapterInterface
      */
     public function populateWith(callable $dispatcher): RouterAdapterInterface
     {

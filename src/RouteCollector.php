@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 class RouteCollector
 {
@@ -28,9 +28,9 @@ class RouteCollector
     /**
      * Set up a context with the given router adapter, name and pattern.
      *
-     * @param \Ellipse\Router\Adapter\RouterAdapterInterface    $adapter
-     * @param string                                            $name
-     * @param string                                            $pattern
+     * @param \Ellipse\Router\RouterAdapterInterface    $adapter
+     * @param string                                    $name
+     * @param string                                    $pattern
      */
     public function __construct(RouterAdapterInterface $adapter, string $name = '', string $pattern = '')
     {
@@ -45,7 +45,7 @@ class RouteCollector
      *
      * @param mixed     $key
      * @param string    $name
-     * @return \Ellipse\Router\Adapter\RouteCollector
+     * @return \Ellipse\Router\RouteCollector
      */
     public function withPrefixes($key, string $pattern): RouteCollector
     {

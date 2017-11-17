@@ -5,8 +5,8 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Http\Server\RequestHandlerInterface;
 
-use Ellipse\Router\Adapter\Handler;
-use Ellipse\Router\Adapter\HandlerFactory;
+use Ellipse\Router\Handler;
+use Ellipse\Router\HandlerFactory;
 
 describe('HandlerFactory', function () {
 

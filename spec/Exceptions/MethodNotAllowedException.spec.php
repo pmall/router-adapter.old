@@ -1,7 +1,7 @@
 <?php
 
-use Ellipse\Router\Adapter\Exceptions\RouterAdapterExceptionInterface;
-use Ellipse\Router\Adapter\Exceptions\MethodNotAllowedException;
+use Ellipse\Router\Exceptions\RouterAdapterExceptionInterface;
+use Ellipse\Router\Exceptions\MethodNotAllowedException;
 
 describe('MethodNotAllowedException', function () {
 

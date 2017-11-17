@@ -4,10 +4,10 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Http\Server\RequestHandlerInterface;
 
-use Ellipse\Router\Adapter\DefinitionInterface;
-use Ellipse\Router\Adapter\Definition;
-use Ellipse\Router\Adapter\RouteCollector;
-use Ellipse\Router\Adapter\HandlerFactory;
+use Ellipse\Router\DefinitionInterface;
+use Ellipse\Router\Definition;
+use Ellipse\Router\RouteCollector;
+use Ellipse\Router\HandlerFactory;
 
 describe('Definition', function () {
 

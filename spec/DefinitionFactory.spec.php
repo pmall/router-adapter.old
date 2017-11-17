@@ -4,9 +4,9 @@ use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Http\Server\RequestHandlerInterface;
 
-use Ellipse\Router\Adapter\DefinitionFactory;
-use Ellipse\Router\Adapter\DefinitionCollection;
-use Ellipse\Router\Adapter\Definition;
+use Ellipse\Router\DefinitionFactory;
+use Ellipse\Router\DefinitionCollection;
+use Ellipse\Router\Definition;
 
 describe('DefinitionFactory', function () {
 

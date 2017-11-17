@@ -7,8 +7,8 @@ use Psr\Http\Message\ResponseInterface;
 
 use Interop\Http\Server\RequestHandlerInterface;
 
-use Ellipse\Router\Adapter\Match;
-use Ellipse\Router\Adapter\Handler;
+use Ellipse\Router\Match;
+use Ellipse\Router\Handler;
 
 describe('Match', function () {
 

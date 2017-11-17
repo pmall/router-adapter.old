@@ -2,9 +2,9 @@
 
 use function Eloquent\Phony\Kahlan\mock;
 
-use Ellipse\Router\Adapter\RouterAdapterInterface;
-use Ellipse\Router\Adapter\RouteCollector;
-use Ellipse\Router\Adapter\Handler;
+use Ellipse\Router\RouterAdapterInterface;
+use Ellipse\Router\RouteCollector;
+use Ellipse\Router\Handler;
 
 describe('RouteCollector', function () {
 

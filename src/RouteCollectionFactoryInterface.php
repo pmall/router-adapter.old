@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 interface RouteCollectionFactoryInterface
 {
@@ -8,7 +8,7 @@ interface RouteCollectionFactoryInterface
      * Return a route collection using the given definitions.
      *
      * @param array $definitions
-     * @return \Ellipse\Router\Adapter\RouteCollection
+     * @return \Ellipse\Router\RouteCollection
      */
     public function __invoke(array $definitions): RouteCollection;
 }

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 class DefinitionFactory
 {
@@ -8,7 +8,7 @@ class DefinitionFactory
      * Return a definition collection containing the given routes.
      *
      * @param array $routes
-     * @return \Ellipse\Router\Adapter\DefinitionCollection
+     * @return \Ellipse\Router\DefinitionCollection
      */
     public static function collection(array $routes): DefinitionCollection
     {
@@ -20,7 +20,7 @@ class DefinitionFactory
      *
      * @param string    $pattern
      * @param array     $routes
-     * @return \Ellipse\Router\Adapter\DefinitionCollection
+     * @return \Ellipse\Router\DefinitionCollection
      */
     public static function pattern(string $pattern, array $routes): DefinitionCollection
     {
@@ -32,7 +32,7 @@ class DefinitionFactory
      *
      * @param iterable  $middleware
      * @param array     $routes
-     * @return \Ellipse\Router\Adapter\DefinitionCollection
+     * @return \Ellipse\Router\DefinitionCollection
      */
     public static function middleware(iterable $middleware, array $routes): DefinitionCollection
     {
@@ -45,7 +45,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param iterable  $middleware
      * @param array     $routes
-     * @return \Ellipse\Router\Adapter\DefinitionCollection
+     * @return \Ellipse\Router\DefinitionCollection
      */
     public static function group(string $pattern, iterable $middleware, array $routes): DefinitionCollection
     {
@@ -58,7 +58,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function get(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -71,7 +71,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function post(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -84,7 +84,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function put(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -97,7 +97,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function delete(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -110,7 +110,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function head(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -123,7 +123,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function options(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -136,7 +136,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function patch(string $pattern, $handler, iterable $middleware = []): Definition
     {
@@ -149,7 +149,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function any(array $methods, string $pattern, $handler, iterable $middleware = [])
     {
@@ -162,7 +162,7 @@ class DefinitionFactory
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
-     * @return \Ellipse\Router\Adapter\Definition
+     * @return \Ellipse\Router\Definition
      */
     public static function all(string $pattern, $handler, iterable $middleware = [])
     {

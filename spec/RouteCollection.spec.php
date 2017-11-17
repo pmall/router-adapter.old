@@ -4,10 +4,10 @@ use function Eloquent\Phony\Kahlan\stub;
 use function Eloquent\Phony\Kahlan\mock;
 use function Eloquent\Phony\Kahlan\anInstanceOf;
 
-use Ellipse\Router\Adapter\RouteCollection;
-use Ellipse\Router\Adapter\RouterAdapterInterface;
-use Ellipse\Router\Adapter\Definition;
-use Ellipse\Router\Adapter\Handler;
+use Ellipse\Router\RouteCollection;
+use Ellipse\Router\RouterAdapterInterface;
+use Ellipse\Router\Definition;
+use Ellipse\Router\Handler;
 
 describe('RouteCollection', function () {
 

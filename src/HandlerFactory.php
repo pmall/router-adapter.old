@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 use Traversable;
 
@@ -38,7 +38,7 @@ class HandlerFactory
      * its current middleware stack.
      *
      * @param iterable $middleware
-     * @return \Ellipse\Router\Adapter\HandlerFactory
+     * @return \Ellipse\Router\HandlerFactory
      */
     public function withMiddleware(iterable $middleware): HandlerFactory
     {
@@ -52,7 +52,7 @@ class HandlerFactory
      *
      * @param iterable  $middleware
      * @param mixed     $handler
-     * @return \Ellipse\Router\Adapter\Handler
+     * @return \Ellipse\Router\Handler
      */
     public function __invoke(iterable $middleware, $handler): Handler
     {

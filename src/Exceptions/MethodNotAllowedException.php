@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter\Exceptions;
+namespace Ellipse\Router\Exceptions;
 
 use RuntimeException;
 

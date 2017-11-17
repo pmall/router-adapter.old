@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Interop\Http\Server\MiddlewareInterface;
 use Interop\Http\Server\RequestHandlerInterface;
 
-use Ellipse\Router\Adapter\Handler;
+use Ellipse\Router\Handler;
 
 describe('Handler', function () {
 

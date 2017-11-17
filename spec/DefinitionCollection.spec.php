@@ -2,10 +2,10 @@
 
 use function Eloquent\Phony\Kahlan\mock;
 
-use Ellipse\Router\Adapter\DefinitionInterface;
-use Ellipse\Router\Adapter\DefinitionCollection;
-use Ellipse\Router\Adapter\RouteCollector;
-use Ellipse\Router\Adapter\HandlerFactory;
+use Ellipse\Router\DefinitionInterface;
+use Ellipse\Router\DefinitionCollection;
+use Ellipse\Router\RouteCollector;
+use Ellipse\Router\HandlerFactory;
 
 describe('DefinitionCollection', function () {
 

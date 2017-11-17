@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,7 +19,7 @@ class Match implements RequestHandlerInterface
     /**
      * The match handler.
      *
-     * @var \Ellipse\Router\Adapter\Handler
+     * @var \Ellipse\Router\Handler
      */
     private $handler;
 
@@ -33,9 +33,9 @@ class Match implements RequestHandlerInterface
     /**
      * Set up a matched route with the given name, handler and attributes.
      *
-     * @param string                            $name
-     * @param \Ellipse\Router\Adapter\Handler   $handler
-     * @param array                             $attributes
+     * @param string                    $name
+     * @param \Ellipse\Router\Handler   $handler
+     * @param array                     $attributes
      */
     public function __construct(string $name, Handler $handler, array $attributes = [])
     {

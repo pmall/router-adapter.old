@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ellipse\Router\Adapter;
+namespace Ellipse\Router;
 
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -9,10 +9,10 @@ interface RouterAdapterInterface
     /**
      * Register a handler to the mapper.
      *
-     * @param string                            $name
-     * @param array                             $methods
-     * @param string                            $pattern
-     * @param \Ellipse\Router\Adapter\Handler   $handler
+     * @param string                    $name
+     * @param array                     $methods
+     * @param string                    $pattern
+     * @param \Ellipse\Router\Handler   $handler
      * @return mixed
      */
     public function register(string $name, array $methods, string $pattern, Handler $handler);
@@ -21,9 +21,9 @@ interface RouterAdapterInterface
      * Return the route matching the given request.
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
-     * @return \Ellipse\Router\Adapter\Match
-     * @throws \Ellipse\Router\Adapter\Exceptions\NotFoundException
-     * @throws \Ellipse\Router\Adapter\Exceptions\MethodNotAllowedException
+     * @return \Ellipse\Router\Match
+     * @throws \Ellipse\Router\Exceptions\NotFoundException
+     * @throws \Ellipse\Router\Exceptions\MethodNotAllowedException
      */
     public function match(ServerRequestInterface $request): Match;
 
@@ -33,7 +33,7 @@ interface RouterAdapterInterface
      * @param string    $name
      * @param array     $parameters
      * @return string
-     * @throws \Ellipse\Router\Adapter\Exceptions\RouteNameNotFoundException
+     * @throws \Ellipse\Router\Exceptions\RouteNameNotFoundException
      */
     public function generate(string $name, array $parameters = []): string;
 }
