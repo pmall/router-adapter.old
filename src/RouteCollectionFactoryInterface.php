@@ -10,5 +10,5 @@ interface RouteCollectionFactoryInterface
      * @param array $definitions
      * @return \Ellipse\Router\Adapter\RouteCollection
      */
-    public function __construct(array $definitions): RouteCollection;
+    public function __invoke(array $definitions): RouteCollection;
 }
