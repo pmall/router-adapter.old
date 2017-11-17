@@ -1,8 +1,10 @@
 {
     "name": "ellipse/router-adapter",
     "type": "library",
-    "description": "Router adapter package for the ellipse router",
+    "description": "Common classes for the ellipse router adapters",
     "keywords": [
+        "psr-7",
+        "psr-15",
         "router"
     ],
     "license": "MIT",
