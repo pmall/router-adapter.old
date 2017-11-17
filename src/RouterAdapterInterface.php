@@ -22,8 +22,8 @@ interface RouterAdapterInterface
      *
      * @param \Psr\Http\Message\ServerRequestInterface $request
      * @return \Ellipse\Router\Adapter\Match
-     * @throws \Ellipse\Router\Exceptions\NotFoundExceptionInterface
-     * @throws \Ellipse\Router\Exceptions\MethodNotAllowedExceptionInterface
+     * @throws \Ellipse\Router\Adapter\Exceptions\NotFoundException
+     * @throws \Ellipse\Router\Adapter\Exceptions\MethodNotAllowedException
      */
     public function match(ServerRequestInterface $request): Match;
 
@@ -33,6 +33,7 @@ interface RouterAdapterInterface
      * @param string    $name
      * @param array     $parameters
      * @return string
+     * @throws \Ellipse\Router\Adapter\Exceptions\RouteNameNotFoundException
      */
     public function generate(string $name, array $parameters = []): string;
 }
