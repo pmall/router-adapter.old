@@ -1,5 +1,6 @@
 <?php
 
+use function Eloquent\Phony\Kahlan\stub;
 use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Http\Server\RequestHandlerInterface;
@@ -9,6 +10,24 @@ use Ellipse\Router\DefinitionCollection;
 use Ellipse\Router\Definition;
 
 describe('DefinitionFactory', function () {
+
+    describe('::reduce()', function () {
+
+        it('should return a new DefinitionCollection', function () {
+
+            $elements = ['element'];
+            $reducer = stub();
+            $route = mock(Definition::class)->get();
+
+            allow('array_reduce')->toBeCalled()->with($elements, $reducer)->andReturn([$route]);
+
+            $test = DefinitionFactory::reduce($elements, $reducer);
+
+            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+
+        });
+
+    });
 
     describe('::collection()', function () {
 

@@ -5,6 +5,20 @@ namespace Ellipse\Router;
 class DefinitionFactory
 {
     /**
+     * Return a definition collection from an array and a callable reducer.
+     *
+     * @param array $elements
+     * @param callable $reducer
+     * @return \Ellipse\Router\DefinitionCollection
+     */
+    public static function reduce(array $elements, callable $reducer): DefinitionCollection
+    {
+        $routes = array_reduce($elements, $reducer, []);
+
+        return new DefinitionCollection($routes);
+    }
+
+    /**
      * Return a definition collection containing the given routes.
      *
      * @param array $routes
