@@ -5,11 +5,11 @@ namespace Ellipse\Router;
 class RouteCollection
 {
     /**
-     * The router adapter.
+     * The router adapter factory.
      *
-     * @var \Ellipse\Router\RouterAdapterInterface
+     * @var callable
      */
-    private $adapter;
+    private $factory;
 
     /**
      * The definition.
@@ -19,31 +19,34 @@ class RouteCollection
     private $definition;
 
     /**
-     * Sert up a route collection with the given router adapter and definition.
+     * Set up a route collection with the given router adapter factory and the
+     * given route definition.
      *
-     * @param \Ellipse\Router\RouterAdapterInterface    $adapter
-     * @param \Ellipse\Router\DefinitionInterface       $definition
+     * @param callable                              $factory
+     * @param \Ellipse\Router\DefinitionInterface   $definition
      */
-    public function __construct(RouterAdapterInterface $adapter, DefinitionInterface $definition)
+    public function __construct(callable $factory, DefinitionInterface $definition)
     {
-        $this->adapter = $adapter;
+        $this->factory = $factory;
         $this->definition = $definition;
     }
 
     /**
-     * Populate the router adapter with the definitions using the given
+     * Return a router adapter populated with the definitions using the given
      * dispatcher factory.
      *
      * @param callable $dispatcher
      * @return \Ellipse\Router\RouterAdapterInterface
      */
-    public function populateWith(callable $dispatcher): RouterAdapterInterface
+    public function toRouterAdapter(callable $dispatcher): RouterAdapterInterface
     {
-        $collector = new RouteCollector($this->adapter);
+        $adapter = ($this->factory)();
+
+        $collector = new RouteCollector($adapter);
         $handler = new HandlerFactory($dispatcher);
 
         $this->definition->populate('', $collector, $handler);
 
-        return $this->adapter;
+        return $adapter;
     }
 }
