@@ -62,15 +62,16 @@ class RouteCollector
      * @param array     $methods
      * @param string    $pattern
      * @param mixed     $handler
+     * @param callable  $setup
      * @return void
      */
-    public function register($key, array $methods, string $pattern, Handler $handler): void
+    public function register($key, array $methods, string $pattern, Handler $handler, callable $setup = null): void
     {
         $name = is_string($key) ? $this->mergeNames($this->name, $key) : '';
         $methods = array_map('strtoupper', $methods);
         $pattern = $this->mergePatterns($this->pattern, $pattern);
 
-        $this->adapter->register($name, $methods, $pattern, $handler);
+        $this->adapter->register($name, $methods, $pattern, $handler, $setup);
     }
 
     /**

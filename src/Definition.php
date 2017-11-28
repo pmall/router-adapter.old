@@ -33,20 +33,40 @@ class Definition implements DefinitionInterface
     private $handler;
 
     /**
-     * Set up a route with the given methods, pattern, middleware stack and
-     * request handler.
+     * The route custom setup.
+     *
+     * @var callable
+     */
+    private $setup;
+
+    /**
+     * Set up a route with the given methods, pattern, middleware stack, request
+     * handler and setup.
      *
      * @param array     $methods
      * @param string    $pattern
      * @param mixed     $handler
      * @param iterable  $middleware
+     * @param callable  $setup
      */
-    public function __construct(array $methods, string $pattern, $handler, iterable $middleware = [])
+    public function __construct(array $methods, string $pattern, $handler, iterable $middleware = [], callable $setup = null)
     {
         $this->methods = $methods;
         $this->pattern = $pattern;
         $this->handler = $handler;
         $this->middleware = $middleware;
+        $this->setup = $setup;
+    }
+
+    /**
+     * Return a new Definition with the given middleware.
+     *
+     * @param callable $setup
+     * @return \Ellipse\Route\Definition
+     */
+    public function setup(callable $setup): Definition
+    {
+        return new Definition($this->methods, $this->pattern, $this->handler, $this->middleware, $setup);
     }
 
     /**
@@ -56,6 +76,6 @@ class Definition implements DefinitionInterface
     {
         $handler = $handler($this->middleware, $this->handler);
 
-        $collector->register($key, $this->methods, $this->pattern, $handler);
+        $collector->register($key, $this->methods, $this->pattern, $handler, $this->setup);
     }
 }

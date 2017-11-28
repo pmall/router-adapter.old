@@ -1,5 +1,6 @@
 <?php
 
+use function Eloquent\Phony\Kahlan\stub;
 use function Eloquent\Phony\Kahlan\mock;
 
 use Ellipse\Router\RouterAdapterInterface;
@@ -11,6 +12,7 @@ describe('RouteCollector', function () {
     beforeEach(function () {
 
         $this->adapter = mock(RouterAdapterInterface::class);
+        $this->setup = stub();
 
         $this->collector = new RouteCollector($this->adapter->get(), 'name', '/pattern');
 
@@ -39,41 +41,49 @@ describe('RouteCollector', function () {
 
         it('should register a route with an empty name when the given key is not a string', function () {
 
-            $this->collector->register(0, ['GET'], '/test', $this->handler);
+            $this->collector->register(0, ['GET'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('', '~', '~', '~');
+            $this->adapter->register->calledWith('', '~', '~', '~', '~');
 
         });
 
         it('should register a route with the given string key as name suffix', function () {
 
-            $this->collector->register('key', ['GET'], '/test', $this->handler);
+            $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('name.key', '~', '~', '~');
+            $this->adapter->register->calledWith('name.key', '~', '~', '~', '~');
 
         });
 
         it('should register a route with the given methods uppercased', function () {
 
-            $this->collector->register('key', ['get', 'post'], '/test', $this->handler);
+            $this->collector->register('key', ['get', 'post'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('~', ['GET', 'POST'], '~', '~');
+            $this->adapter->register->calledWith('~', ['GET', 'POST'], '~', '~', '~');
 
         });
 
         it('should register a route with the given pattern as pattern suffix', function () {
 
-            $this->collector->register('key', ['GET'], '/test', $this->handler);
+            $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('~', '~', '/pattern/test', '~');
+            $this->adapter->register->calledWith('~', '~', '/pattern/test', '~', '~');
+
+        });
+
+        it('should register a route with the given setup callable', function () {
+
+            $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
+
+            $this->adapter->register->calledWith('~', '~', '~', '~', $this->setup);
 
         });
 
         it('should register a route with the given handler', function () {
 
-            $this->collector->register('key', ['GET'], '/test', $this->handler);
+            $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('~', '~', '~', $this->handler);
+            $this->adapter->register->calledWith('~', '~', '~', $this->handler, '~');
 
         });
 

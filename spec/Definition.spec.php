@@ -1,5 +1,6 @@
 <?php
 
+use function Eloquent\Phony\Kahlan\stub;
 use function Eloquent\Phony\Kahlan\mock;
 
 use Interop\Http\Server\RequestHandlerInterface;
@@ -15,14 +16,28 @@ describe('Definition', function () {
 
         $this->middleware = ['middleware'];
         $this->handler = mock(RequestHandlerInterface::class)->get();
+        $this->setup = stub();
 
-        $this->definition = new Definition(['GET', 'POST'], '/pattern', $this->handler, $this->middleware);
+        $this->definition = new Definition(['GET', 'POST'], '/pattern', $this->handler, $this->middleware, $this->setup);
 
     });
 
     it('should implement DefinitionInterface', function () {
 
         expect($this->definition)->toBeAnInstanceOf(DefinitionInterface::class);
+
+    });
+
+    describe('->setup()', function () {
+
+        it('should return a new Definition with the given setup callable', function () {
+
+            $test = $this->definition->setup(stub());
+
+            expect($test)->toBeAnInstanceOf(Definition::class);
+            expect($test)->not->toBe($this->definition);
+
+        });
 
     });
 
@@ -39,7 +54,7 @@ describe('Definition', function () {
 
             $this->definition->populate('key', $this->collector->get(), $this->factory->get());
 
-            $this->collector->register->calledWith('key', '~', '~', '~');
+            $this->collector->register->calledWith('key', '~', '~', '~', '~');
 
         });
 
@@ -47,7 +62,7 @@ describe('Definition', function () {
 
             $this->definition->populate('key', $this->collector->get(), $this->factory->get());
 
-            $this->collector->register->calledWith('~', ['GET', 'POST'], '~', '~');
+            $this->collector->register->calledWith('~', ['GET', 'POST'], '~', '~', '~');
 
         });
 
@@ -55,7 +70,19 @@ describe('Definition', function () {
 
             $this->definition->populate('key', $this->collector->get(), $this->factory->get());
 
-            $this->collector->register->calledWith('~', '~', '/pattern', '~');
+            $this->collector->register->calledWith('~', '~', '/pattern', '~', '~');
+
+        });
+
+        it('should call the route collector ->register() method with the definition setup callable', function () {
+
+            $this->definition->populate('key', $this->collector->get(), $this->factory->get());
+
+            $this->factory->__invoke->calledWith($this->middleware, $this->handler);
+
+            $handler = $this->factory->__invoke->firstCall()->returnValue();
+
+            $this->collector->register->calledWith('~', '~', '~', '~', $this->setup);
 
         });
 
@@ -67,7 +94,7 @@ describe('Definition', function () {
 
             $handler = $this->factory->__invoke->firstCall()->returnValue();
 
-            $this->collector->register->calledWith('~', '~', '~', $handler);
+            $this->collector->register->calledWith('~', '~', '~', $handler, '~');
 
         });
 

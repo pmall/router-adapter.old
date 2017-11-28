@@ -14,7 +14,8 @@ describe('RouteCollection', function () {
     beforeEach(function () {
 
         $this->factory = stub();
-        $this->definition = new Definition(['GET'], '/pattern', 'handler');
+        $this->setup = stub();
+        $this->definition = new Definition(['GET'], '/pattern', 'handler', [], $this->setup);
 
         $this->collection = new RouteCollection($this->factory, $this->definition);
 
@@ -44,7 +45,7 @@ describe('RouteCollection', function () {
 
             $this->collection->toRouterAdapter($this->dispatcher);
 
-            $this->adapter->register->calledWith('', ['GET'], '/pattern', anInstanceOf(Handler::class));
+            $this->adapter->register->calledWith('', ['GET'], '/pattern', anInstanceOf(Handler::class), $this->setup);
 
         });
 
