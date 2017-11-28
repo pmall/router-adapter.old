@@ -13,9 +13,9 @@ interface RouterAdapterInterface
      * @param array                     $methods
      * @param string                    $pattern
      * @param \Ellipse\Router\Handler   $handler
-     * @return mixed
+     * @return void
      */
-    public function register(string $name, array $methods, string $pattern, Handler $handler);
+    public function register(string $name, array $methods, string $pattern, Handler $handler): void;
 
     /**
      * Return the route matching the given request.
