@@ -13,7 +13,7 @@ describe('HandlerFactory', function () {
     beforeEach(function () {
 
         $this->dispatcher = stub();
-        $this->middleware = ['middleware'];
+        $this->middleware = ['middleware1'];
 
         $this->factory = new HandlerFactory($this->dispatcher, $this->middleware);
 
@@ -23,13 +23,15 @@ describe('HandlerFactory', function () {
 
         context('when the given middleware stack is an array', function () {
 
-            it('should return a new handler factory', function () {
+            it('should return a new handler factory with the given middleware', function () {
 
-                $middleware = ['middleware'];
+                $middleware = ['middleware2'];
 
                 $test = $this->factory->withMiddleware($middleware);
 
-                expect($test)->toBeAnInstanceOf(HandlerFactory::class);
+                $factory = new HandlerFactory($this->dispatcher, ['middleware1', 'middleware2']);
+
+                expect($test)->toEqual($factory);
                 expect($test)->not->toBe($this->factory);
 
             });
@@ -40,13 +42,15 @@ describe('HandlerFactory', function () {
 
             it('should return a new handler factory', function () {
 
-                $middleware = ['middleware'];
+                $middleware = ['middleware2'];
 
                 $middleware = new ArrayObject($middleware);
 
                 $test = $this->factory->withMiddleware($middleware);
 
-                expect($test)->toBeAnInstanceOf(HandlerFactory::class);
+                $factory = new HandlerFactory($this->dispatcher, ['middleware1', 'middleware2']);
+
+                expect($test)->toEqual($factory);
                 expect($test)->not->toBe($this->factory);
 
             });
@@ -61,13 +65,15 @@ describe('HandlerFactory', function () {
 
             it('should return a new Handler using the given middleware stack and handler', function () {
 
-                $middleware = ['middleware'];
+                $middleware = ['middleware2'];
 
                 $handler = mock(RequestHandlerInterface::class)->get();
 
                 $test = $this->factory->__invoke($middleware, $handler);
 
-                expect($test)->toBeAnInstanceOf(Handler::class);
+                $handler = new Handler($this->dispatcher, ['middleware1', 'middleware2'], $handler);
+
+                expect($test)->toEqual($handler);
 
             });
 
@@ -77,7 +83,7 @@ describe('HandlerFactory', function () {
 
             it('should return a new Handler using the given middleware stack and handler', function () {
 
-                $middleware = ['middleware'];
+                $middleware = ['middleware2'];
 
                 $middleware = new ArrayObject($middleware);
 
@@ -85,7 +91,9 @@ describe('HandlerFactory', function () {
 
                 $test = $this->factory->__invoke($middleware, $handler);
 
-                expect($test)->toBeAnInstanceOf(Handler::class);
+                $handler = new Handler($this->dispatcher, ['middleware1', 'middleware2'], $handler);
+
+                expect($test)->toEqual($handler);
 
             });
 

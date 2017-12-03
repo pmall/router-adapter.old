@@ -23,7 +23,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::reduce($elements, $reducer);
 
-            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+            $collection = new DefinitionCollection([$route]);
+
+            expect($test)->toEqual($collection);
 
         });
 
@@ -37,7 +39,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::collection([$route]);
 
-            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+            $collection = new DefinitionCollection([$route]);
+
+            expect($test)->toEqual($collection);
 
         });
 
@@ -51,7 +55,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::pattern('/pattern', [$route]);
 
-            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+            $collection = new DefinitionCollection([$route], '/pattern');
+
+            expect($test)->toEqual($collection);
 
         });
 
@@ -66,7 +72,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::middleware([$middleware], [$route]);
 
-            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+            $collection = new DefinitionCollection([$route], '', [$middleware]);
+
+            expect($test)->toEqual($collection);
 
         });
 
@@ -81,7 +89,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::group('/pattern', [$middleware], [$route]);
 
-            expect($test)->toBeAnInstanceOf(DefinitionCollection::class);
+            $collection = new DefinitionCollection([$route], '/pattern', [$middleware]);
+
+            expect($test)->toEqual($collection);
 
         });
 
@@ -95,7 +105,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::get('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -106,7 +118,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::get('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -120,7 +134,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::post('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['POST'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -131,7 +147,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::post('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['POST'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -145,7 +163,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::put('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['PUT'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -156,7 +176,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::put('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['PUT'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -170,7 +192,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::delete('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['DELETE'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -181,7 +205,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::delete('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['DELETE'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -195,7 +221,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::head('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['HEAD'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -206,7 +234,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::head('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['HEAD'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -220,7 +250,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::options('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['OPTIONS'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -231,7 +263,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::options('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['OPTIONS'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -245,7 +279,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::patch('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['PATCH'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -256,7 +292,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::patch('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['PATCH'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -270,7 +308,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::any(['GET', 'POST'], '/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET', 'POST'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -281,7 +321,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::any(['GET', 'POST'], '/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET', 'POST'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -295,7 +337,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::all('/pattern', $handler);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH'], '/pattern', $handler, []);
+
+            expect($test)->toEqual($definition);
 
         });
 
@@ -306,7 +350,9 @@ describe('DefinitionFactory', function () {
 
             $test = DefinitionFactory::all('/pattern', $handler, [$middleware]);
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $definition = new Definition(['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS', 'PATCH'], '/pattern', $handler, [$middleware]);
+
+            expect($test)->toEqual($definition);
 
         });
 

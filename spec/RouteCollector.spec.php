@@ -14,7 +14,7 @@ describe('RouteCollector', function () {
         $this->adapter = mock(RouterAdapterInterface::class);
         $this->setup = stub();
 
-        $this->collector = new RouteCollector($this->adapter->get(), 'name', '/pattern');
+        $this->collector = new RouteCollector($this->adapter->get(), 'namespace', '/prefix');
 
     });
 
@@ -24,7 +24,9 @@ describe('RouteCollector', function () {
 
             $test = $this->collector->withPrefixes('key', '/pattern');
 
-            expect($test)->toBeAnInstanceOf(RouteCollector::class);
+            $collector = new RouteCollector($this->adapter->get(), 'namespace.key', '/prefix/pattern');
+
+            expect($test)->toEqual($collector);
             expect($test)->not->toBe($this->collector);
 
         });
@@ -51,7 +53,7 @@ describe('RouteCollector', function () {
 
             $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('name.key', '~', '~', '~', '~');
+            $this->adapter->register->calledWith('namespace.key', '~', '~', '~', '~');
 
         });
 
@@ -65,9 +67,9 @@ describe('RouteCollector', function () {
 
         it('should register a route with the given pattern as pattern suffix', function () {
 
-            $this->collector->register('key', ['GET'], '/test', $this->handler, $this->setup);
+            $this->collector->register('key', ['GET'], '/pattern', $this->handler, $this->setup);
 
-            $this->adapter->register->calledWith('~', '~', '/pattern/test', '~', '~');
+            $this->adapter->register->calledWith('~', '~', '/prefix/pattern', '~', '~');
 
         });
 

@@ -32,9 +32,13 @@ describe('Definition', function () {
 
         it('should return a new Definition with the given setup callable', function () {
 
-            $test = $this->definition->setup(stub());
+            $setup = stub();
 
-            expect($test)->toBeAnInstanceOf(Definition::class);
+            $test = $this->definition->setup($setup);
+
+            $definition = new Definition(['GET', 'POST'], '/pattern', $this->handler, $this->middleware, $setup);
+
+            expect($test)->toEqual($definition);
             expect($test)->not->toBe($this->definition);
 
         });
